@@ -33,6 +33,7 @@ config.json
 # Dependency directories
 node_modules
 jspm_packages
+bwd
 
 # Optional npm cache directory
 .npm
