@@ -5,14 +5,6 @@ exports.run = async (client, message, [member]) => {
     if (!row) {
       message.channel.send('That user has not linked an account!');
     } else {
-      // var name = client.funcs.uuidtoname(row.accountUuid);
-      // client.funcs.uuidtoname(row.accountUuid);
-      // function.resolve((arg) => {
-      //   message.channel.send(current_name);
-      // })
-      // console.log(row.accountUuid);
-      // message.channel.send(row.accountUuid);
-      // const memberUuid = client.funcs.uuidtoname(row.accountUuid);
       request.get(`https://api.mojang.com/user/profiles/${row.accountUuid}/names`, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           var obj = JSON.parse(body);

@@ -1,3 +1,5 @@
+// I had no idea what I was doing wit this... it's broken af
+
 const request = require('request-promise-native');
 module.exports = (uuid) => {
   // console.log(uuid);

@@ -1,7 +1,5 @@
 exports.run = (client, message, [name]) => {
   const request = require('request');
-  // message.channel.send(`Getting previous names for ${name}!`);
-  // message.channel.startTyping();
 
                 request.get(`https://api.mojang.com/users/profiles/minecraft/${name}`, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
@@ -13,7 +11,6 @@ exports.run = (client, message, [name]) => {
 										icon_url: `https://minotar.net/avatar/${name}/16`
 									},
                                     description: uuid,
-                                    // thumbnail: {url: `https://minotar.net/helm/${name}/100`},
 									timestamp: new Date(),
 									footer: {
 									icon_url: client.user.avatarURL,

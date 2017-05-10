@@ -1,8 +1,7 @@
 exports.run = (client, message, [ign, game]) => {
   const request = require('request');
   message.channel.send(`Getting stats for ${ign}!`);
-  //message.channel.startTyping();
-            
+
             request.get(`http://hypixel.kerbybit.com/stats/${game}/${ign}.txt`, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     if (body.startsWith("Error: ")) {
@@ -29,7 +28,6 @@ exports.run = (client, message, [ign, game]) => {
                     }
                 }
 });
- // message.channel.stopTyping();
 };
 
 exports.conf = {

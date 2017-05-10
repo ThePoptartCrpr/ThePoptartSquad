@@ -1,7 +1,5 @@
 exports.run = (client, message, [name]) => {
   const request = require('request');
-  // message.channel.send(`Getting previous names for ${name}!`);
-  // message.channel.startTyping();
 
                 request.get(`https://api.mojang.com/users/profiles/minecraft/${name}`, function (error, response, body) {
                     if (!error && response.statusCode == 200) {

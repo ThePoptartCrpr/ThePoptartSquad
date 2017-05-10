@@ -15,13 +15,9 @@ exports.run = (client, message, [account]) => {
 			})
 			.then(collected => {
 			if (!collected) return;
-			// if(!validAnswers.includes(collected.content)) return message.channel.send('Invalid reply!');
 			if (collected.first().content === 'yes' || collected.first().content === 'y' || collected.first().content === 'Yes') {
-				// message.channel.send(`${uuid}`);
 				sql.open('./linkedaccounts.sqlite').then(() => sql.get(`SELECT * FROM linkedaccounts WHERE userId = '${message.author.id}'`).then(row => {
 					if (!row) {
-						// console.log("INSERT INTO linkedaccounts (userId, accountUuid) VALUES (?, ?)', [message.author.id, uuid]).then(row => { message.reply(`${row.uuid}, new line`);");
-						// sql.run('INSERT INTO linkedaccounts (userID, accountUuid) VALUES ("' + message.author.id + '", "' + uuid + '");').then(row => {
 						sql.get(`SELECT * FROM linkedaccounts WHERE accountUuid = '${uuid}'`).then(row => {
 							if (!row) {
 								sql.run('INSERT INTO linkedaccounts (userId, accountUuid) VALUES (?, ?)', [message.author.id, uuid]).then(() => {
@@ -35,9 +31,6 @@ exports.run = (client, message, [account]) => {
 						if (row.accountUuid === uuid) {
 							message.channel.send('You\'re already linked to that account!');
 						} else {
-						/*sql.run(`UPDATE linkedaccounts SET accountUuid = ${uuid} WHERE userId = '${message.author.id}'`).then(()=> {
-							message.channel.send(`Success! Your account has been un-linked and linked to ${account}!`);
-						});*/
 						message.channel.send(`Your account is already linked to ${row.accountUuid}! Please use \`p!unlink\` to unlink your account and then link again!`);
 					}
 					}
